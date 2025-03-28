@@ -74,17 +74,17 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="min-h-screen flex items-center justify-center py-20 bg-muted/30">
+      <div className="container mx-auto px-4 max-w-5xl">
         <h2 className="text-3xl font-bold mb-2 text-center">Get In Touch</h2>
         <div className="h-1 w-20 bg-primary mx-auto mb-10"></div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 justify-center gap-8">
           <div>
-            <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
-            <div className="space-y-4 mb-8">
+            <h3 className="text-xl font-semibold mb-6 text-center">Contact Information</h3>
+            <div className="space-y-4">
               {contactInfo.map((info, index) => (
-                <Card key={index}>
+                <Card key={index} className="mx-auto w-full max-w-sm">
                   <CardContent className="p-4">
                     <a href={info.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
                       {info.icon}
@@ -98,56 +98,8 @@ export default function Contact() {
               ))}
             </div>
           </div>
-
-          <div>
-            <h3 className="text-xl font-semibold mb-6">Send Me a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <Input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div>
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div>
-                <Textarea
-                  name="message"
-                  placeholder="Your Message"
-                  rows={5}
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <Button type="submit" className="w-full" disabled={isSubmitting}>
-                {isSubmitting ? (
-                  <span className="flex items-center gap-2">
-                    Sending... <Send className="h-4 w-4 animate-pulse" />
-                  </span>
-                ) : (
-                  <span className="flex items-center gap-2">
-                    Send Message <Send className="h-4 w-4" />
-                  </span>
-                )}
-              </Button>
-            </form>
-          </div>
         </div>
       </div>
     </section>
   )
 }
-

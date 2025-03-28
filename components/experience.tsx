@@ -43,9 +43,9 @@ export default function Experience() {
           <Timeline>
             {experiences.map((exp, index) => (
               <TimelineItem key={index}>
-                {index < experiences.length - 1 && <TimelineConnector />}
+                {/* {index < experiences.length - 1 && <TimelineConnector />} */}
                 <TimelineHeader>
-                  <TimelineIcon className="bg-primary" />
+                  {/* <TimelineIcon className="bg-primary" /> */}
                   <Card>
                     <CardHeader className="pb-2">
                       <CardTitle>{exp.title}</CardTitle>
