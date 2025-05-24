@@ -11,6 +11,12 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    if (!theme) {
+      setTheme("dark");
+    }
+  }, [theme, setTheme]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
