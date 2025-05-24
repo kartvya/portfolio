@@ -30,7 +30,7 @@ export default function Hero() {
 
     // Create particles
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 2000;
+    const particlesCount = 1000;
 
     const posArray = new Float32Array(particlesCount * 3);
     for (let i = 0; i < particlesCount * 3; i++) {
@@ -100,11 +100,11 @@ export default function Hero() {
             </span>
           </h1>
           <h2 className="text-2xl md:text-3xl font-semibold mb-6">
-            React Native Developer
+            Software Developer
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground mb-8">
-            Building exceptional mobile experiences with 3 years of expertise in
-            React Native and JavaScript
+            Building performant mobile & web applications with robust backend
+            architectures — delivering end-to-end full-stack solutions.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg">

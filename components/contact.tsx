@@ -1,44 +1,41 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent } from "@/components/ui/card"
-import { Mail, Phone, MapPin, Linkedin, Github, Send } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
+import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { useState } from "react";
 
 export default function Contact() {
-  const { toast } = useToast()
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
     toast({
       title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    })
+      description: "Thanks for reaching out. I'll reply soon!",
+    });
 
-    setFormData({ name: "", email: "", message: "" })
-    setIsSubmitting(false)
-  }
+    setFormData({ name: "", email: "", message: "" });
+    setIsSubmitting(false);
+  };
 
   const contactInfo = [
     {
@@ -56,8 +53,8 @@ export default function Contact() {
     {
       icon: <MapPin className="h-5 w-5 text-primary" />,
       label: "Location",
-      value: "Anand, Gujarat, India",
-      link: "https://maps.google.com/?q=Anand,Gujarat,India",
+      value: "Ahmedabad, Gujarat, India",
+      link: "https://maps.google.com/?q=ahmedabad,Gujarat,India",
     },
     {
       icon: <Linkedin className="h-5 w-5 text-primary" />,
@@ -65,41 +62,78 @@ export default function Contact() {
       value: "@Kartvya",
       link: "https://linkedin.com/in/Kartvya",
     },
-    {
-      icon: <Github className="h-5 w-5 text-primary" />,
-      label: "GitHub",
-      value: "@Kartvya",
-      link: "https://github.com/Kartvya",
-    },
-  ]
+  ];
 
   return (
-    <section id="contact" className="min-h-screen flex items-center justify-center py-20 bg-muted/30">
-      <div className="container mx-auto px-4 max-w-5xl">
-        <h2 className="text-3xl font-bold mb-2 text-center">Get In Touch</h2>
-        <div className="h-1 w-20 bg-primary mx-auto mb-10"></div>
+    <section id="contact" className="py-20">
+      <div className="container mx-auto px-4 max-w-6xl">
+        <h2 className="text-3xl font-bold mb-4 text-center">Get In Touch</h2>
+        <div className="h-1 w-28 bg-primary mx-auto mb-10 rounded-full shadow-md" />
 
-        <div className="grid grid-cols-1 justify-center gap-8">
-          <div>
-            <h3 className="text-xl font-semibold mb-6 text-center">Contact Information</h3>
-            <div className="space-y-4">
-              {contactInfo.map((info, index) => (
-                <Card key={index} className="mx-auto w-full max-w-sm">
-                  <CardContent className="p-4">
-                    <a href={info.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Contact Info Card */}
+          <Card className="shadow-lg">
+            <CardContent className="p-6 space-y-4">
+              <h3 className="text-xl font-semibold">Contact Information</h3>
+              <ul className="space-y-3">
+                {contactInfo.map((info, i) => (
+                  <li key={i} className="flex items-center gap-4">
+                    <div className="bg-primary/10 p-3 rounded-full">
                       {info.icon}
-                      <div>
-                        <p className="text-sm text-muted-foreground">{info.label}</p>
-                        <p>{info.value}</p>
-                      </div>
-                    </a>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">
+                        {info.label}
+                      </p>
+                      <a
+                        href={info.link}
+                        className="hover:underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {info.value}
+                      </a>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+
+          {/* Message Card */}
+          <Card className="shadow-lg flex items-center justify-center">
+            <CardContent className="p-6 text-center space-y-4">
+              <h3 className="text-xl font-semibold">Send a Message</h3>
+              <p className="text-muted-foreground">
+                I'm currently not accepting messages through the site. <br />
+                But feel free to reach out via{" "}
+                <a
+                  href="mailto:kartvyaacharya@gmail.com"
+                  className="underline text-primary"
+                >
+                  email
+                </a>{" "}
+                or{" "}
+                <a
+                  href="https://linkedin.com/in/Kartvya"
+                  className="underline text-primary"
+                >
+                  LinkedIn
+                </a>
+                .
+              </p>
+              <div className="flex justify-center gap-4 pt-2">
+                <a href="mailto:kartvyaacharya@gmail.com">
+                  <Button>Send Email</Button>
+                </a>
+                <a href="https://linkedin.com/in/Kartvya" target="_blank">
+                  <Button variant="outline">Connect on LinkedIn</Button>
+                </a>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
-  )
+  );
 }
